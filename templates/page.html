@@ -1,5 +1,9 @@
 {% extends "index.html" %}
 
+{%- block page_head -%}
+{{ head_macros::katex(config=config, enable=page.extra.katex) }}
+{%- endblock -%}
+
 {%- block title -%}
 {{ title_macros::title(page_title=page.title, main_title=config.title) }}
 {%- endblock -%}

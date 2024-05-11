@@ -22,12 +22,14 @@
 {% else %}
     <link rel="stylesheet" href="{{ get_url(path="font-hack-subset.css", trailing_slash=false) | safe }}">
 {% endif -%}
-{% if config.extra.katex_enable %}
+{% endmacro head %}
+
+{% macro katex(config, enable) %}
+{% if enable %}
     <link rel="stylesheet" href="{{ get_url(path="katex.min.css", trailing_slash=false) | safe }}">
     <script defer src="{{ get_url(path="katex.min.js", trailing_slash=false) | safe }}"></script>
-    {% if config.extra.katex_auto_render %}
-        <script defer src="{{ get_url(path="auto-render.min.js", trailing_slash=false) | safe }}" onload="renderMathInElement(document.body);"></script>
-    {% endif %}
+    {% if config.extra.katex_auto_render -%}
+    <script defer src="{{ get_url(path="auto-render.min.js", trailing_slash=false) | safe }}" onload="renderMathInElement(document.body);"></script>
+    {%- endif %}
 {% endif %}
-
-{% endmacro head %}
+{% endmacro %}
